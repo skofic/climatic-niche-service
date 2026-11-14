@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 .summary('What the selectors offer')
 .description(
     'Everything the panes need to build their selectors, in the dictionary\'s vocabulary:\n\n' +
-    '- **datasets** — the climate sources as Dataset records: `std_dataset_ids` (the key the panes send), code, title and definition in the configured language, whether a 1 km grid exists for click lookups.\n' +
+    '- **datasets** — the climate sources as Dataset records: `std_dataset_ids` (the key the panes send), code, title and definition in the configured language, `info` (the `_description`, `_uses`, `_methods`, `_issues` of the record in that language, and its `_references`), whether a 1 km grid exists for click lookups.\n' +
     '- **climates** — every dataset × period × scenario: `env_climate_period` and `env_climate_scenario` terms with their data aliases, `present` for the reference period, and `key` (`<period gid>|<scenario gid>`), the key of a unit\'s `values`.\n' +
     '- **axes** — the X and Y descriptors offered (`ui_layout_scatterplot_X` / `_Y`) and the five pairs whose Y is suggested when X changes.\n' +
     '- **species** — every taxon of ScatterSpecies with its availability: scatterplot cells, Atlas presence / suitability maps, EU-Trees4F maps, EUFGIS units.\n' +
