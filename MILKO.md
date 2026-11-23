@@ -5,7 +5,7 @@ the places where the design rests on something outside this repository.
 
 ## Where it sits
 
-- **Data side:** [`indicator-pair-scatterplots`](https://github.com/skofic/indicator-pair-scatterplots)
+- **Data side:** [`climatic-niche-scatterplots`](https://github.com/skofic/climatic-niche-scatterplots)
   loads the `Scatter*` collections into `GeoService` and keeps the living plan (`CLAUDE.md`), the
   study notes and the decisions log. The design of this service is its
   `notes/2026-11-09-foxx-service-design.md`; the collection and index definitions in `lib/schema.js`
@@ -13,7 +13,7 @@ the places where the design rests on something outside this repository.
 - **Vocabulary side:** the data dictionary (`metadata-store`, served by `metadata-store-service` at
   `metadata/ui`). Every request key and option value is a term there; `ui_layout_state` is the schema
   of the pane state and holds its defaults. The handoff that created the terms:
-  `indicator-pair-scatterplots/notes/2026-11-09-handoff-metadata-store-ui-terms.md`.
+  `climatic-niche-scatterplots/notes/2026-11-09-handoff-metadata-store-ui-terms.md`.
 - **Pages:** the panes (`examples/` of the data repository today, the portal's panes tomorrow) call
   this service for data and the dictionary for texts.
 

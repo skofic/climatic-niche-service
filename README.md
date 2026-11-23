@@ -1,8 +1,8 @@
-# indicator-pair-scatterplots-service
+# climatic-niche-service
 
 ArangoDB Foxx service of the EUFGIS **species distribution map** and **indicator pair scatterplot** panes.
 Mounted in the `GeoService` database (proposed mount `/panes`), it is the read API over the `Scatter*`
-collections that the [`indicator-pair-scatterplots`](https://github.com/skofic/indicator-pair-scatterplots)
+collections that the [`climatic-niche-scatterplots`](https://github.com/skofic/climatic-niche-scatterplots)
 repository loads: the selector catalogue, the base layer per indicator pair and climate, a species' cells
 and units, a map selection resolved to cells, the climate at a clicked point, the EU-Trees4F suitability
 classes, the units index and geometries, the maps manifest.
@@ -96,12 +96,12 @@ collection's count changes (a reload) or the service restarts.
 ## Install
 
 From the ArangoDB web interface: **Services → Add Service → Upload** the bundle, or **→ GitHub**
-`skofic/indicator-pair-scatterplots-service`, mount `/panes`. From the HTTP API:
+`skofic/climatic-niche-service`, mount `/panes`. From the HTTP API:
 
 ```bash
-npm run bundle   # → indicator-pair-scatterplots-service.zip
+npm run bundle   # → climatic-niche-service.zip
 curl -u user:password -X POST -H "Content-Type: application/zip" \
-  --data-binary @indicator-pair-scatterplots-service.zip \
+  --data-binary @climatic-niche-service.zip \
   "http://localhost:8529/_db/GeoService/_api/foxx?mount=/panes&setup=true"
 ```
 
@@ -109,7 +109,7 @@ Upgrade (keeps the collections; empties the cache):
 
 ```bash
 curl -u user:password -X PATCH -H "Content-Type: application/zip" \
-  --data-binary @indicator-pair-scatterplots-service.zip \
+  --data-binary @climatic-niche-service.zip \
   "http://localhost:8529/_db/GeoService/_api/foxx/service?mount=/panes&teardown=false&setup=true"
 ```
 
@@ -121,7 +121,7 @@ Tests: `curl -u user:password -X POST "http://localhost:8529/_db/GeoService/_api
 collections and the two owned ones) and every **named index** that is absent, leaves existing ones
 untouched, empties `PanesCache`, and with the `prefill` configuration computes the base layer of every
 pair × climate into the cache (80 answers, about a second each). The data itself is loaded by the
-`indicator-pair-scatterplots` pipeline, never here.
+`climatic-niche-scatterplots` pipeline, never here.
 
 `scripts/teardown.js` drops `PanesCache` and `PanesSuitability` only. The `Scatter*` data collections
 are dropped only when the configuration `teardownDropsData` is true (off by default): a wrong mount or

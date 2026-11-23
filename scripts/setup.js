@@ -2,7 +2,7 @@
 // Installer. Runs on install and upgrade, and on demand (POST /_api/foxx/scripts/setup?mount=<mount>).
 //
 // 1. Collections — every Scatter* data collection and the two owned ones (lib/schema.js): created when absent,
-//    left untouched when present (the data is loaded by the indicator-pair-scatterplots pipeline, never here).
+//    left untouched when present (the data is loaded by the climatic-niche-scatterplots pipeline, never here).
 // 2. Named indexes — created when no index of that name exists on the collection, left alone otherwise.
 // 3. The answer cache is emptied (its contents belong to the data as it was).
 // 4. With the `prefill` configuration, the base layer of every pair × climate is computed into the cache.

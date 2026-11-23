@@ -1,5 +1,5 @@
 {
-    "name": "indicator-pair-scatterplots-service",
+    "name": "climatic-niche-service",
     "version": "0.1.0",
     "description": "Read API of the EUFGIS species distribution map and indicator pair scatterplot panes over the GeoService Scatter* collections: catalogue, base layer, species cells, units, map selection, suitability classes, maps manifest. Requests and answers use the data dictionary's vocabulary (ui_layout_state).",
     "engines": {

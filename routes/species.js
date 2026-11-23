@@ -53,6 +53,6 @@ stateParams(router.get('/classes', guard(function (req, res) {
 .description(
     'For an EU-Trees4F future period and scenario: every cell\'s class from the published binary maps (current potential map vs the period\'s map, potential or natural-dispersal variant), ' +
     'as one digit per cell in the global order — the aliases of `ui_layout_scatterplot_view_classes_legend`: 0 unsuitable, 1 stable, 2 decolonised, 3 newly suitable. ' +
-    'Read from PanesSuitability, which the indicator-pair-scatterplots loader fills.');
+    'Read from PanesSuitability, which the climatic-niche-scatterplots loader fills.');
 
 module.exports = router;
