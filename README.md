@@ -1,6 +1,6 @@
 # climatic-niche-service
 
-ArangoDB Foxx service of the EUFGIS **species distribution map** and **indicator pair scatterplot** panes.
+ArangoDB Foxx service of the EUFGIS **species distribution map** and **climatic niche scatterplot** panes.
 Mounted in the `GeoService` database (proposed mount `/panes`), it is the read API over the `Scatter*`
 collections that the [`climatic-niche-scatterplots`](https://github.com/skofic/climatic-niche-scatterplots)
 repository loads: the selector catalogue, the base layer per indicator pair and climate, a species' cells
