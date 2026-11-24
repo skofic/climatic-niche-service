@@ -12,7 +12,7 @@ router.tag('Units');
 stateParams(router.get('/index', guard(function (req, res) {
     res.json(unitsIndex(resolveLevel(req.queryParams, req.headers)));
 })), [K.level])
-.response(['application/json'], 'Every unit the level allows: gcu_id_number, gcu_id_country (ISO_3166_1_* term), species_list, gcu_loc_coordinates-restriction, gcu_loc_climate_distance')
+.response(['application/json'], 'Every unit the level allows: gcu_id_number, gcu_id_country (ISO_3166_1_* term), species_list, gcu_loc_coordinates-restriction, gcu_loc_climate_distance, gcu_loc_climate_elevation, the polygon\'s topography, and gcu_loc_climate_flag: per dataset key, how far the climate of the unit\'s area lies from the climate at its reference point on the reference period, as [°C of annual mean temperature, % of annual precipitation]')
 .summary('The units index')
 .description('The host page\'s shared controls: countries, species and units with their facets are built from this list. At the public level restricted units are absent; no geometry at any level.');
 
