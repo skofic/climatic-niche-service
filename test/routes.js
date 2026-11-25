@@ -135,20 +135,16 @@ describe('selection', function () {
 });
 
 describe('units, maps, state, health', function () {
-    it('the climate flag: the units index and the units of a species carry the area\'s differences, the area\'s pair and the point\'s elevation', function () {
+    it('the reference point flag: the units carry how far the point\'s climate lies outside the area\'s range, the area\'s mean, minimum and maximum, and the point\'s elevation', function () {
         const wc = json(get('/catalogue')).climates.find((c) => c.src === 'worldclim' && c.present);
         const index = json(get('/units/index'));
-        const withFlag = index.filter((u) => u.gcu_loc_climate_flag && u.gcu_loc_climate_flag[wc[K.dataset]]);
-        expect(withFlag.length).to.be.above(index.length * 0.9);
-        const d = withFlag[0].gcu_loc_climate_flag[wc[K.dataset]];
-        expect(d).to.have.length(2); expect(d[0]).to.be.at.least(0);
+        const withFacts = index.filter((u) => u.climate_excess && u.climate_excess[wc[K.dataset]]);
+        expect(withFacts.length).to.be.above(index.length * 0.9);
+        expect(withFacts.filter((u) => u.climate_excess[wc[K.dataset]][0] === 0).length, 'most points lie within their area\'s range').to.be.above(withFacts.length * 0.9);
         expect(index.filter((u) => typeof u.gcu_loc_climate_elevation === 'number').length).to.be.above(index.length * 0.9);
         const units = json(get('/species/units', { species: 'Fagus sylvatica', [K.dataset]: wc[K.dataset] }));
-        const u = units.find((x) => x.gcu_loc_climate_flag[wc[K.dataset]] && x.gcu_loc_climate_flag[wc[K.dataset]][0] > 0.5);
-        expect(u, 'a beech unit whose area differs by over 0.5 °C').to.exist;
-        const k = Object.keys(u.values)[0];
-        expect(u.gcu_loc_climate_area[k]).to.have.length(2);
-        expect(Math.abs(u.gcu_loc_climate_area[k][0] - u.values[k][0])).to.be.above(0);
+        const u = units.find((x) => Object.keys(x.gcu_loc_climate_area).length), k = Object.keys(u.values)[0];
+        for (const i of [0, 1]) { expect(u.gcu_loc_climate_area_min[k][i]).to.be.at.most(u.gcu_loc_climate_area[k][i] + 1e-6); expect(u.gcu_loc_climate_area_max[k][i]).to.be.at.least(u.gcu_loc_climate_area[k][i] - 1e-6); }
     });
     it('GET /units/index at the public level has no restricted unit and country terms', function () {
         const r = json(get('/units/index'));
