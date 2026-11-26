@@ -63,7 +63,7 @@ Swagger is the reference (ArangoDB web interface → Services → panes → API)
 
 | Route | What it does |
 |---|---|
-| `GET /catalogue` | What the selectors offer: datasets (as `std_dataset_ids` keys with title and definition), every dataset × period × scenario as terms with their data aliases, the X and Y axes and the five pairs, the species with availability flags, the countries, the length of the global cell order, the restriction levels. Cached. |
+| `GET /catalogue` | What the selectors offer: datasets (as `std_dataset_ids` keys with title and definition), every dataset × period × scenario as terms with their data aliases and the `axes` (indicators) that climate holds, the X and Y axes and the five pairs, the species with availability flags, the countries, the length of the global cell order, the restriction levels. Cached. |
 | `GET /base` | The base layer: `[x, y]` or `null` per survey cell in the global order, for a dataset, period, scenario and pair. ~3.4 MB; computed once (0.8 s), then from `PanesCache` with an `ETag` (16 ms; 304 on `If-None-Match`). |
 | `GET /species/cells` | The cells holding a species: a sorted index list into the global order (climate-independent). |
 | `GET /species/units` | The units of a species (every unit without a species: the panes' empty state) at the restriction level, with the pair for every climate of the dataset (`values["<period gid>\|<scenario gid>"]`), the distance of the reference point from the polygon, and the point where the geometry rule allows it. |

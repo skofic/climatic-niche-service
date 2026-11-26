@@ -21,6 +21,10 @@ describe('catalogue', function () {
         expect(cat.climates.length).to.be.greaterThan(10);
         expect(cat.axes[K.X]).to.include('env_climate_bio01');
         expect(cat.axes.pairs).to.have.lengthOf(5);
+        // the indicators each climate holds: EU-Trees4F lacks four of the ten, radiation exists on the WorldClim reference period only
+        const t4 = cat.climates.find((c) => c.src === 'eutrees4f' && c.present), w = cat.climates.find((c) => c.src === 'worldclim' && c.present), wf = cat.climates.find((c) => c.src === 'worldclim' && !c.present);
+        expect(t4.axes).to.have.lengthOf(6); expect(t4.axes).to.not.include('env_climate_tas_coldest');
+        expect(w.axes).to.have.lengthOf(10); expect(wf.axes).to.not.include('env_climate_srad_spring-summer');
         expect(cat.species.map((s) => s.species)).to.include('Fagus sylvatica');
         expect(cat.cells).to.be.greaterThan(200000);
     });
